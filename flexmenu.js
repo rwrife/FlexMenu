@@ -1,3 +1,8 @@
+var $fmFilterSpacer = $('<div />', {
+  "class": "filter-drop-spacer",
+  "height": $("#nav").outerHeight()
+});
+
 $( window ).resize(function() {    
     _fmMenuRefresh();
 });
@@ -5,6 +10,18 @@ $( window ).resize(function() {
 $( document ).ready(function() {    
     _fmMenuRefresh();
 });
+
+
+ $( window ).scroll(function(){    	   
+     if(!$("#nav").hasClass('fix') && $(window).scrollTop() > $("#nav").offset().top){
+        $("#nav").before($fmFilterSpacer);
+        $("#nav").addClass("fix");		  	
+     } else if ( $("#nav").hasClass('fix')  && $(window).scrollTop() < $fmFilterSpacer.offset().top){		 			 	
+        $("#nav").removeClass("fix");
+        $filterSpacer.remove();
+     }
+     _fmMenuRefresh();
+ });
 
 function _fmMenuRefresh() {
     var moreMenu = $("#nav > li.nav-more > ul").first();
@@ -40,6 +57,5 @@ function _fmMenuBarSpace() {
     } else {
         menuSpace = $("#nav").innerWidth();
     }
-    //console.log(menuSpace);
     return menuSpace;
 }

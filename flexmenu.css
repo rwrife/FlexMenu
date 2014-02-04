@@ -213,3 +213,12 @@
     left: -7px;
 
 }
+
+#nav.fix {
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+	width:100%;
+    margin:0;
+    left:0;
+}
