@@ -1,4 +1,12 @@
 $( window ).resize(function() {    
+    _fmMenuRefresh();
+});
+
+$( document ).ready(function() {    
+    _fmMenuRefresh();
+});
+
+function _fmMenuRefresh() {
     var moreMenu = $("#nav > li.nav-more > ul").first();
     var menuBar = $("#nav").first();
     
@@ -12,9 +20,9 @@ $( window ).resize(function() {
     $("#nav > li:not(.nav-more)").each(function(i, e) {
         var item = $(e);
         var pos = item.position();
-        if(pos != null && pos.top > 0) {
-            item.appendTo(moreMenu);                        
-        }
+        if(pos != null && pos.top > 0) {                       
+            item.prependTo(moreMenu);
+        }        
     });
     
     if(moreMenu.children().length == 0) {
@@ -22,7 +30,7 @@ $( window ).resize(function() {
     } else {
          $("#nav > li.nav-more").show();
     }
-});
+}
 
 function _fmMenuBarSpace() {
     var menuSpace = 0;
