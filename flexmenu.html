@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>FlexMenu Demo</title>        
+        <link rel="stylesheet" href="flexmenu.css">        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="https://use.edgefonts.net/source-sans-pro:n4,i4,n6,i6:all.js"></script>
+        <script src="flexmenu.js"></script>
+    </head>
+    <body>
+        <div role="navigation">
+            <ul id="nav">
+                <li><a href="javascript:void(0)">Home</a></li> 
+                <li>Jewelry</li> 
+                <li>Gemstones
+                    <ul>
+                        <li>Diamonds
+                            <ul>
+                                <li>White</li>
+                                <li>Black</li>
+                                <li>Chocolate</li>
+                            </ul>
+                            <span class="expand-indicator right"> </span>
+                        </li>
+                        <li>Ruby</li>
+                        <li>Emerald</li>
+                        <li>Saphire</li>
+                        <li>Tanzanite</li>
+                    </ul>
+                </li> 
+                <li>Jewel School
+                    <div class="nav-large-content">
+                        <div style="width:250px;height:100px;">this is html content</div>
+                    </div>
+                </li> 
+                <li>Gifts</li> 
+                <li>Clearance</li> 
+                <li class="nav-more">
+                    <span class="more-icon"><em></em><em></em><em></em><em></em></span>
+                    <ul>
+                        <li>Auctions</li>
+                        <li>Learning Library</li>
+                        <li>Learning Library Long Menu</li>
+                    </ul>
+                </li>
+            </ul>            
+        </div>
+        
+        
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                
+            });
+            
+            $(document).click(function() {
+
+                   
+                   
+                alert(menuSpace);
+            });
+        </script>
+    </body>
+</html>
