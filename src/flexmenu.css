@@ -235,39 +235,49 @@
 /* Home Icon Styling */
 .nav-home {
   width: 50px;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .home-icon {
-  height: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.home-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 0;
-  border-width: 10px;
+  height: 0;
+  border-width: 0 10px 10px 10px;
   border-style: solid;
   border-color: transparent transparent var(--flexmenu-text) transparent;
-  position: relative;
-  top: -4px;
+  box-sizing: border-box;
 }
 
-.home-icon:after {
+.home-icon::after {
   content: '';
-  width: 14px;
-  height: 11px;
-  background-color: var(--flexmenu-text);
   position: absolute;
-  top: 9px;
-  left: -7px;
+  top: 10px;
+  left: 3px;
+  width: 14px;
+  height: 10px;
+  background-color: var(--flexmenu-text);
+  box-sizing: border-box;
 }
 
-#nav > li:hover .home-icon,
-.flexmenu-nav > li:hover .home-icon {
+#nav > li:hover .home-icon::before,
+.flexmenu-nav > li:hover .home-icon::before {
   border-color: transparent transparent var(--flexmenu-hover-text) transparent;
 }
 
-#nav > li:hover .home-icon:after,
-.flexmenu-nav > li:hover .home-icon:after {
+#nav > li:hover .home-icon::after,
+.flexmenu-nav > li:hover .home-icon::after {
   background-color: var(--flexmenu-hover-text);
 }
 
