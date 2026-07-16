@@ -230,6 +230,9 @@ export class FlexMenu {
     const containerWidth = this.menuElement.getBoundingClientRect().width;
     if (containerWidth === 0) return; // Menu is currently hidden
 
+    // Filter out items that have been removed from the DOM
+    this.originalItems = this.originalItems.filter(item => item.isConnected);
+
     // If widths were measured as 0 (e.g. initialized while hidden), re-measure now
     let needsRecompute = this.moreWidth === 0;
     if (!needsRecompute) {
@@ -501,7 +504,9 @@ export class FlexMenu {
 
     // Move all items back to the menu element
     this.originalItems.forEach(item => {
-      this.menuElement.insertBefore(item, this.moreItem);
+      if (item.isConnected) {
+        this.menuElement.insertBefore(item, this.moreItem);
+      }
     });
 
     // Remove "More" item if it was auto-generated
