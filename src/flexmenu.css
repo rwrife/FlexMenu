@@ -205,6 +205,8 @@
   box-shadow: var(--flexmenu-dropdown-shadow);
   border: var(--flexmenu-dropdown-border);
   border-radius: var(--flexmenu-dropdown-border-radius);
+  white-space: normal;
+  line-height: normal;
 }
 
 #nav > li:not(.nav-more):hover > .nav-large-content,
