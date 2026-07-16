@@ -1,0 +1,589 @@
+/* ==========================================================================
+   Premium Dashboard styling for FlexMenu Demo
+   ========================================================================== */
+
+/* Global Reset and Typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #0b0f19;
+  color: #f1f5f9;
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 1. Hero Banner */
+.demo-hero {
+  position: relative;
+  padding: 100px 20px;
+  text-align: center;
+  background: radial-gradient(circle at top, #1e1b4b 0%, #0b0f19 70%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(168, 85, 247, 0.1) 0px, transparent 50%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 50px;
+  margin-bottom: 24px;
+}
+
+.demo-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto 36px auto;
+}
+
+/* Button UI */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-left: 12px;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* 2. Main Layout Container */
+.demo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+/* 3. Resizable Viewport Area */
+.viewport-box {
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.viewport-header {
+  background: #1f2937;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.window-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.window-dot.red { background: #ef4444; }
+.window-dot.yellow { background: #f59e0b; }
+.window-dot.green { background: #10b981; }
+
+.viewport-title {
+  margin-left: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+/* The Resizable Container */
+.resizable-wrapper {
+  min-height: 100px;
+  padding: 24px;
+  background: #182235;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  resize: horizontal;
+  overflow: hidden; /* Needed for resize handle to work */
+  border-right: 2px dashed rgba(255,255,255,0.15);
+  box-sizing: border-box;
+}
+
+/* 4. Controls Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 850px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-card {
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 30px;
+  transition: border-color 0.2s ease;
+}
+
+.dashboard-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dashboard-card h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.card-icon {
+  margin-right: 8px;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 24px;
+}
+
+/* Width slider custom styles */
+.range-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.custom-slider {
+  flex-grow: 1;
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 5px;
+  background: #1f2937;
+  outline: none;
+}
+
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  transition: transform 0.1s;
+}
+
+.custom-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.width-label {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #38bdf8;
+  min-width: 60px;
+}
+
+.presets-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-preset {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-preset:hover {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+/* Theme Selector Grid */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.btn-theme {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.btn-theme:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-theme.active {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: #a855f7;
+  color: #c084fc;
+}
+
+.color-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.color-dot.obsidian { background: #3b82f6; }
+.color-dot.glass { background: #cbd5e1; }
+.color-dot.neon { background: #ff007f; }
+.color-dot.light { background: #475569; }
+
+/* Item Manager */
+.add-item-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-item-row input {
+  flex-grow: 1;
+  background: #1f2937;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #f1f5f9;
+  padding: 10px 16px;
+  border-radius: 8px;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.add-item-row input:focus {
+  border-color: #38bdf8;
+}
+
+.btn-add {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+}
+
+.btn-add:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.item-list-container h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+.item-list {
+  list-style: none;
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px;
+  background: rgba(0,0,0,0.2);
+}
+
+.item-list-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 13px;
+}
+
+.item-list-entry:last-child {
+  border-bottom: none;
+}
+
+.btn-remove-item {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.btn-remove-item:hover {
+  transform: scale(1.2);
+}
+
+/* Event Logs Monitor */
+.logs-container {
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px;
+  background: rgba(0,0,0,0.3);
+  padding: 16px;
+  height: 250px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.log-entry {
+  margin-bottom: 6px;
+  color: #a7f3d0;
+}
+.log-entry.system { color: #93c5fd; }
+.log-entry.overflow { color: #fca5a5; }
+.log-entry.underflow { color: #fde047; }
+
+/* 5. Framework Integration tabs */
+.integration-section {
+  background: rgba(17, 24, 39, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 40px;
+}
+
+.integration-section h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #94a3b8;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  color: #f1f5f9;
+}
+
+.tab-btn.active {
+  color: #38bdf8;
+  border-bottom-color: #38bdf8;
+}
+
+.tab-contents {
+  position: relative;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+pre {
+  background: #020617;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 20px;
+  overflow-x: auto;
+  max-height: 400px;
+}
+
+code {
+  font-family: monospace;
+  font-size: 13px;
+  color: #38bdf8;
+}
+
+/* 6. Footer */
+.demo-footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   Theme variables styling overrides for demo
+   ========================================================================== */
+
+/* Theme: Obsidian Night (Sleek dark theme) */
+.theme-obsidian #resizable-menu-wrapper {
+  background: #111827;
+}
+.theme-obsidian #nav {
+  --flexmenu-bg: #1f2937;
+  --flexmenu-text: #e2e8f0;
+  --flexmenu-hover-bg: #3b82f6;
+  --flexmenu-hover-text: #fff;
+  --flexmenu-dropdown-bg: #1f2937;
+  --flexmenu-dropdown-text: #e2e8f0;
+  --flexmenu-dropdown-hover-bg: #3b82f6;
+  --flexmenu-dropdown-hover-text: #fff;
+  border-radius: 8px;
+}
+
+/* Theme: Glassmorphism (Vibrant blur theme) */
+.theme-glass #resizable-menu-wrapper {
+  background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+}
+.theme-glass #nav {
+  --flexmenu-bg: rgba(255, 255, 255, 0.08);
+  --flexmenu-text: #cbd5e1;
+  --flexmenu-hover-bg: rgba(255, 255, 255, 0.15);
+  --flexmenu-hover-text: #fff;
+  --flexmenu-dropdown-bg: rgba(17, 12, 40, 0.85);
+  --flexmenu-dropdown-text: #e2e8f0;
+  --flexmenu-dropdown-hover-bg: rgba(255, 255, 255, 0.15);
+  --flexmenu-dropdown-hover-text: #fff;
+  --flexmenu-dropdown-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+/* Theme: Cyberpunk Neon (Hot neon dark theme) */
+.theme-neon #resizable-menu-wrapper {
+  background: #000;
+}
+.theme-neon #nav {
+  --flexmenu-bg: #0d0d0d;
+  --flexmenu-text: #39ff14; /* Lime green neon */
+  --flexmenu-hover-bg: #ff007f; /* Neon pink */
+  --flexmenu-hover-text: #000;
+  --flexmenu-dropdown-bg: #0d0d0d;
+  --flexmenu-dropdown-text: #39ff14;
+  --flexmenu-dropdown-hover-bg: #ff007f;
+  --flexmenu-dropdown-hover-text: #000;
+  --flexmenu-dropdown-border: 1px solid #39ff14;
+  border: 1px solid #39ff14;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+}
+
+/* Theme: Minimalist Light (Crisp light theme) */
+.theme-light #resizable-menu-wrapper {
+  background: #f8fafc;
+}
+.theme-light #nav {
+  --flexmenu-bg: #ffffff;
+  --flexmenu-text: #475569;
+  --flexmenu-hover-bg: #f1f5f9;
+  --flexmenu-hover-text: #0f172a;
+  --flexmenu-dropdown-bg: #ffffff;
+  --flexmenu-dropdown-text: #475569;
+  --flexmenu-dropdown-hover-bg: #f1f5f9;
+  --flexmenu-dropdown-hover-text: #0f172a;
+  --flexmenu-dropdown-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+  --flexmenu-dropdown-border: 1px solid #e2e8f0;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+.theme-light #nav .more-icon em {
+  background-color: #475569;
+}

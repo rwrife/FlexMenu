@@ -1,0 +1,43 @@
+{
+  "name": "flexmenu",
+  "version": "1.0.0",
+  "description": "A robust, responsive, zero-dependency flexible menu component that automatically collapses overflowing items into a dropdown.",
+  "main": "./dist/flexmenu.umd.js",
+  "module": "./dist/flexmenu.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/flexmenu.mjs",
+      "require": "./dist/flexmenu.umd.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite --config vite.config.demo.ts",
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "build:demo": "vite build --config vite.config.demo.ts",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "flexmenu",
+    "responsive-menu",
+    "priority-plus",
+    "navigation",
+    "menu",
+    "dropdown",
+    "vanilla-js",
+    "typescript"
+  ],
+  "author": "rwrife",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vite-plugin-dts": "^3.6.0"
+  }
+}

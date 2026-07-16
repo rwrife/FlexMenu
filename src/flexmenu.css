@@ -1,0 +1,308 @@
+/* ==========================================
+   FlexMenu Core Styles and Themes
+   Customizable via CSS Custom Properties
+   ========================================== */
+
+:root {
+  /* Default Skin Colors */
+  --flexmenu-bg: #bbb;
+  --flexmenu-text: #333;
+  --flexmenu-hover-bg: orange;
+  --flexmenu-hover-text: #fff;
+  --flexmenu-height: 50px;
+  --flexmenu-font-family: source-sans-pro, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --flexmenu-font-size: 16px;
+  
+  /* Dropdown Styles */
+  --flexmenu-dropdown-bg: #eee;
+  --flexmenu-dropdown-text: #333;
+  --flexmenu-dropdown-hover-bg: orange;
+  --flexmenu-dropdown-hover-text: #fff;
+  --flexmenu-dropdown-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  --flexmenu-dropdown-border: 1px solid rgba(0,0,0,0.1);
+  --flexmenu-dropdown-border-radius: 4px;
+}
+
+/* Core Navigation Bar Container */
+#nav,
+.flexmenu-nav {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  list-style: none;
+  position: relative;
+  font-family: var(--flexmenu-font-family);
+  font-size: var(--flexmenu-font-size);
+  background-color: var(--flexmenu-bg);
+  color: var(--flexmenu-text);
+  height: var(--flexmenu-height);
+  padding: 0 50px 0 0; /* Maintain original padding right */
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Navigation List Items */
+#nav > li,
+.flexmenu-nav > li {
+  height: var(--flexmenu-height);
+  line-height: var(--flexmenu-height);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#nav > li a,
+.flexmenu-nav > li a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+#nav > li:hover,
+.flexmenu-nav > li:hover {
+  background-color: var(--flexmenu-hover-bg);
+  color: var(--flexmenu-hover-text);
+}
+
+/* More Dropdown Trigger Wrapper */
+#nav .nav-more,
+.flexmenu-nav .nav-more {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  padding: 0;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+#nav.fix .nav-more,
+.flexmenu-nav.fix .nav-more {
+  right: 50px;
+}
+
+#nav .nav-more:hover,
+.flexmenu-nav .nav-more:hover {
+  background-color: transparent;
+}
+
+#nav .nav-more:hover .more-icon,
+.flexmenu-nav .nav-more:hover .more-icon {
+  background-color: var(--flexmenu-hover-bg);
+  color: var(--flexmenu-hover-text);
+}
+
+/* Hamburger / Dots Icon */
+.more-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  gap: 3px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.more-icon em {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: currentColor;
+}
+
+/* Core Dropdown List (More Menu) */
+#nav .nav-more > ul,
+.flexmenu-nav .nav-more > ul {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  position: absolute;
+  top: var(--flexmenu-height);
+  right: 0;
+  background-color: var(--flexmenu-dropdown-bg);
+  color: var(--flexmenu-dropdown-text);
+  min-width: 200px;
+  box-shadow: var(--flexmenu-dropdown-shadow);
+  border: var(--flexmenu-dropdown-border);
+  border-radius: var(--flexmenu-dropdown-border-radius);
+  z-index: 1000;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, visibility 0.2s;
+  pointer-events: none;
+}
+
+#nav.fix .nav-more > ul,
+.flexmenu-nav.fix .nav-more > ul {
+  right: 50px;
+}
+
+/* Open State */
+#nav .nav-more.is-open > ul,
+.flexmenu-nav .nav-more.is-open > ul {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Dropdown list items */
+#nav .nav-more > ul > li,
+.flexmenu-nav .nav-more > ul > li {
+  line-height: 40px;
+  height: 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#nav .nav-more > ul > li:hover,
+.flexmenu-nav .nav-more > ul > li:hover {
+  background-color: var(--flexmenu-dropdown-hover-bg);
+  color: var(--flexmenu-dropdown-hover-text);
+}
+
+/* Standard HTML Content / Large Content dropdown hover */
+#nav > li .nav-large-content,
+.flexmenu-nav > li .nav-large-content {
+  display: none;
+  position: absolute;
+  background-color: var(--flexmenu-dropdown-bg);
+  color: var(--flexmenu-dropdown-text);
+  top: 100%;
+  left: 0;
+  z-index: 999;
+  padding: 15px;
+  box-shadow: var(--flexmenu-dropdown-shadow);
+  border: var(--flexmenu-dropdown-border);
+  border-radius: var(--flexmenu-dropdown-border-radius);
+}
+
+#nav > li:not(.nav-more):hover > .nav-large-content,
+.flexmenu-nav > li:not(.nav-more):hover > .nav-large-content {
+  display: block;
+}
+
+/* Submenu layout (multilevel) */
+#nav > li ul,
+.flexmenu-nav > li ul {
+  display: none;
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: var(--flexmenu-dropdown-bg);
+  color: var(--flexmenu-dropdown-text);
+  box-shadow: var(--flexmenu-dropdown-shadow);
+  border: var(--flexmenu-dropdown-border);
+  border-radius: var(--flexmenu-dropdown-border-radius);
+  z-index: 1000;
+}
+
+#nav > li > ul,
+.flexmenu-nav > li > ul {
+  left: 0;
+  top: 100%;
+}
+
+#nav li:hover > ul,
+.flexmenu-nav li:hover > ul {
+  display: block;
+}
+
+#nav li.nav-more > ul > li > ul,
+.flexmenu-nav li.nav-more > ul > li > ul {
+  display: none !important; /* Disable submenus on the "more" dropdown for simplicity */
+}
+
+/* Home Icon Styling */
+.nav-home {
+  width: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-icon {
+  height: 0;
+  width: 0;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent var(--flexmenu-text) transparent;
+  position: relative;
+  top: -4px;
+}
+
+.home-icon:after {
+  content: '';
+  width: 14px;
+  height: 11px;
+  background-color: var(--flexmenu-text);
+  position: absolute;
+  top: 9px;
+  left: -7px;
+}
+
+#nav > li:hover .home-icon,
+.flexmenu-nav > li:hover .home-icon {
+  border-color: transparent transparent var(--flexmenu-hover-text) transparent;
+}
+
+#nav > li:hover .home-icon:after,
+.flexmenu-nav > li:hover .home-icon:after {
+  background-color: var(--flexmenu-hover-text);
+}
+
+/* Indicators and Arrows */
+.expand-indicator {
+  display: inline-block;
+  margin-left: 8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.expand-indicator.right {
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent currentColor;
+}
+
+.expand-indicator.down {
+  border-width: 6px 4px 0 4px;
+  border-color: currentColor transparent transparent transparent;
+}
+
+/* Sticky fixed positioning */
+#nav.fix,
+.flexmenu-nav.fix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  margin: 0;
+}
+
+/* Spacer element to avoid page jump on stick */
+.flexmenu-spacer {
+  display: block;
+  width: 100%;
+}

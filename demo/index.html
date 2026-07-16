@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlexMenu Interactive Demo & Dashboard</title>
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./demo.css">
+</head>
+<body class="theme-obsidian">
+  
+  <!-- Hero / Introduction -->
+  <header class="demo-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="badge">PRODUCTION READY</div>
+      <h1>FlexMenu <span class="gradient-text">JS</span></h1>
+      <p class="subtitle">A lightweight, responsive, zero-dependency, type-safe, and fully accessible (WAI-ARIA) navigation bar layout system.</p>
+      
+      <div class="hero-buttons">
+        <a href="#demo-section" class="btn btn-primary">Try Interactive Demo</a>
+        <a href="https://github.com/rwrife/FlexMenu" class="btn btn-secondary" target="_blank">View GitHub Repo</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Demo Anchor -->
+  <div id="sticky-anchor"></div>
+
+  <!-- Main Demo Section -->
+  <section id="demo-section" class="demo-container">
+    
+    <!-- Resizable Viewport Container Wrapper -->
+    <div class="viewport-box">
+      <div class="viewport-header">
+        <div class="window-dot red"></div>
+        <div class="window-dot yellow"></div>
+        <div class="window-dot green"></div>
+        <div class="viewport-title">Interactive Navigation Bar (Drag bottom-right corner or use slider to resize)</div>
+      </div>
+      
+      <!-- Resizable Navbar Wrapper -->
+      <div id="resizable-menu-wrapper" class="resizable-wrapper">
+        <ul id="nav" class="flexmenu-nav">
+          <li class="nav-home">
+            <a href="javascript:void(0)" aria-label="Home">
+              <div class="home-icon"></div>
+            </a>
+          </li>
+          <li><a href="javascript:void(0)">Jewelry</a></li>
+          <li>
+            <a href="javascript:void(0)">Gemstones <span class="expand-indicator down"></span></a>
+            <ul>
+              <li>
+                <a href="javascript:void(0)">Diamonds <span class="expand-indicator right"></span></a>
+                <ul>
+                  <li><a href="javascript:void(0)">White</a></li>
+                  <li><a href="javascript:void(0)">Black</a></li>
+                  <li><a href="javascript:void(0)">Chocolate</a></li>
+                </ul>
+              </li>
+              <li><a href="javascript:void(0)">Ruby</a></li>
+              <li><a href="javascript:void(0)">Emerald</a></li>
+              <li><a href="javascript:void(0)">Sapphire</a></li>
+              <li><a href="javascript:void(0)">Tanzanite</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:void(0)">Jewel School</a>
+            <div class="nav-large-content">
+              <div style="width:250px; padding:10px;">
+                <h4 style="margin:0 0 8px 0; color:#e2e8f0;">Featured Programs</h4>
+                <p style="margin:0; font-size:13px; line-height:1.4; color:#94a3b8;">Learn jewelry design, stone setting, and wire wrapping from master jewelers.</p>
+              </div>
+            </div>
+          </li>
+          <li><a href="javascript:void(0)">Gifts</a></li>
+          <li><a href="javascript:void(0)">Clearance</a></li>
+          <li><a href="javascript:void(0)">Auctions</a></li>
+          <li><a href="javascript:void(0)">Learning Library</a></li>
+          <li><a href="javascript:void(0)">Special Deals</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Controls Panel Dashboard -->
+    <div class="dashboard-grid">
+      
+      <!-- Box 1: Viewport Controls -->
+      <div class="dashboard-card">
+        <h3><span class="card-icon">📏</span> Container Width</h3>
+        <p class="card-desc">Simulate different device sizes by sliding the range or selecting a preset device.</p>
+        
+        <div class="range-container">
+          <input type="range" id="width-slider" min="300" max="1200" value="1000" class="custom-slider">
+          <div class="width-label"><span id="width-display">1000</span>px</div>
+        </div>
+        
+        <div class="presets-row">
+          <button class="btn-preset" data-width="1200">🖥️ Desktop (1200px)</button>
+          <button class="btn-preset" data-width="768">📟 Tablet (768px)</button>
+          <button class="btn-preset" data-width="480">📱 Mobile (480px)</button>
+        </div>
+      </div>
+
+      <!-- Box 2: Theme Selector -->
+      <div class="dashboard-card">
+        <h3><span class="card-icon">🎨</span> Visual Aesthetics</h3>
+        <p class="card-desc">Instantly toggle the UI stylesheet to see the premium CSS variables in action.</p>
+        
+        <div class="theme-grid">
+          <button class="btn-theme active" data-theme="obsidian">
+            <span class="color-dot obsidian"></span> Obsidian Night
+          </button>
+          <button class="btn-theme" data-theme="glass">
+            <span class="color-dot glass"></span> Glassmorphism
+          </button>
+          <button class="btn-theme" data-theme="neon">
+            <span class="color-dot neon"></span> Cyberpunk Neon
+          </button>
+          <button class="btn-theme" data-theme="light">
+            <span class="color-dot light"></span> Minimalist Light
+          </button>
+        </div>
+      </div>
+
+      <!-- Box 3: Item Manager -->
+      <div class="dashboard-card">
+        <h3><span class="card-icon">➕</span> Dynamic Item Manager</h3>
+        <p class="card-desc">Add and remove items to test FlexMenu's dynamic calculation capabilities.</p>
+        
+        <div class="add-item-row">
+          <input type="text" id="item-input" placeholder="New Item Name..." value="Watches">
+          <button id="btn-add-item" class="btn btn-add">Add Item</button>
+        </div>
+        
+        <div class="item-list-container">
+          <h4>Active Menu Items (Drag/Remove)</h4>
+          <ul id="active-items-list" class="item-list">
+            <!-- Populated via JavaScript -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Box 4: Event Logs Monitor -->
+      <div class="dashboard-card">
+        <h3><span class="card-icon">📟</span> Event Logs Monitor</h3>
+        <p class="card-desc">Watch real-time priority-plus rendering events and callbacks fire.</p>
+        <div class="logs-container">
+          <div id="logs-list" class="logs-list">
+            <div class="log-entry system">[System] FlexMenu initializing...</div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Integration Code Reference Section -->
+    <div class="integration-section">
+      <h2>Integrating with Frameworks</h2>
+      <p>FlexMenu is pure Javascript, making it simple to instantiate in any modern library. Here's how:</p>
+      
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="vanilla">Vanilla JS</button>
+        <button class="tab-btn" data-tab="react">React</button>
+        <button class="tab-btn" data-tab="vue">Vue 3</button>
+        <button class="tab-btn" data-tab="angular">Angular</button>
+      </div>
+
+      <div class="tab-contents">
+        <div class="tab-content active" id="tab-vanilla">
+          <pre><code>import { FlexMenu } from 'flexmenu';
+import 'flexmenu/style.css';
+
+const menu = new FlexMenu('#nav', {
+  sticky: true,
+  onOverflow: (item) => console.log('Overflowed:', item),
+  onUnderflow: (item) => console.log('Returned:', item)
+});</code></pre>
+        </div>
+        
+        <div class="tab-content" id="tab-react">
+          <pre><code>import React, { useEffect, useRef } from 'react';
+import { FlexMenu } from 'flexmenu';
+import 'flexmenu/style.css';
+
+export function Navigation() {
+  const navRef = useRef(null);
+  const flexMenuInstance = useRef(null);
+
+  useEffect(() => {
+    if (navRef.current) {
+      flexMenuInstance.current = new FlexMenu(navRef.current, {
+        sticky: false
+      });
+    }
+
+    return () => {
+      // Clean up event listeners & observers on unmount!
+      flexMenuInstance.current?.destroy();
+    };
+  }, []);
+
+  return (
+    &lt;ul id="nav" ref={navRef} className="flexmenu-nav"&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Services&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  );
+}</code></pre>
+        </div>
+
+        <div class="tab-content" id="tab-vue">
+          <pre><code>&lt;template&gt;
+  &lt;ul id="nav" ref="navElement" class="flexmenu-nav"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted, onUnmounted } from 'vue';
+import { FlexMenu } from 'flexmenu';
+import 'flexmenu/style.css';
+
+const navElement = ref(null);
+let flexMenu = null;
+
+onMounted(() => {
+  if (navElement.value) {
+    flexMenu = new FlexMenu(navElement.value);
+  }
+});
+
+onUnmounted(() => {
+  if (flexMenu) {
+    flexMenu.destroy();
+  }
+});
+&lt;/script&gt;</code></pre>
+        </div>
+
+        <div class="tab-content" id="tab-angular">
+          <pre><code>import { Component, ElementRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { FlexMenu } from 'flexmenu';
+
+@Component({
+  selector: 'app-navigation',
+  template: `
+    &lt;ul #nav class="flexmenu-nav"&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  `,
+  styleUrls: ['./navigation.component.css']
+})
+export class NavigationComponent implements OnInit, OnDestroy {
+  @ViewChild('nav', { static: true }) navElement!: ElementRef;
+  private flexMenu?: FlexMenu;
+
+  ngOnInit() {
+    this.flexMenu = new FlexMenu(this.navElement.nativeElement);
+  }
+
+  ngOnDestroy() {
+    this.flexMenu?.destroy();
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="demo-footer">
+    <p>FlexMenu Library. MIT Licensed. Open source on GitHub.</p>
+  </footer>
+
+  <script type="module" src="./demo.ts"></script>
+</body>
+</html>
