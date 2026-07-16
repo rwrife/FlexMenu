@@ -224,6 +224,7 @@
   top: 0;
   background-color: var(--flexmenu-dropdown-bg);
   color: var(--flexmenu-dropdown-text);
+  min-width: 200px;
   box-shadow: var(--flexmenu-dropdown-shadow);
   border: var(--flexmenu-dropdown-border);
   border-radius: var(--flexmenu-dropdown-border-radius);
@@ -317,6 +318,7 @@
 #nav > li ul .expand-indicator,
 .flexmenu-nav > li ul .expand-indicator {
   margin-left: auto;
+  padding-left: 15px;
   margin-right: -4px;
 }
 
