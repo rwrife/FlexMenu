@@ -1,4 +1,4 @@
-import { FlexMenu } from '../src/flexmenu';
+import { FlexMenu } from '../src/index';
 
 document.addEventListener('DOMContentLoaded', () => {
   const navEl = document.getElementById('nav');
