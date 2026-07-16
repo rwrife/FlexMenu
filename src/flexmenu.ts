@@ -125,11 +125,18 @@ export class FlexMenu {
     this.moreTrigger.setAttribute('aria-controls', this.moreContainer.id);
 
     // 2. Identify all menu items (both active and already in dropdown)
-    const activeItems = Array.from(this.menuElement.querySelectorAll(this.options.itemSelector.replace(/^>\s*/, ''))) as HTMLElement[];
+    // Get direct children of the menu element
+    const children = Array.from(this.menuElement.children) as HTMLElement[];
+    const directActiveItems = children.filter(child => {
+      if (child === this.moreItem) return false;
+      const selector = this.options.itemSelector.replace(/^>\s*/, '');
+      try {
+        return child.matches(selector);
+      } catch (e) {
+        return child.tagName === 'LI' && !child.classList.contains(this.options.moreClass);
+      }
+    });
     const dropdownItems = Array.from(this.moreContainer.children) as HTMLElement[];
-    
-    // Filter active items to ensure they are direct children
-    const directActiveItems = activeItems.filter(item => item.parentElement === this.menuElement && item !== this.moreItem);
     
     this.originalItems = [...directActiveItems, ...dropdownItems];
 
@@ -172,32 +179,48 @@ export class FlexMenu {
    * Temporarily place all items horizontally to measure their natural widths.
    */
   public measureWidths(): void {
+    const originalContainerDisplay = this.menuElement.style.display;
     const originalMoreDisplay = this.moreItem.style.display;
     const originalMoreVisibility = this.moreItem.style.visibility;
     
-    // Hide more item from taking space, but keep it in document
+    // Temporarily make container display block to prevent flex shrink/grow
+    this.menuElement.style.display = 'block';
     this.moreItem.style.display = 'none';
     
-    // Move all items temporarily back to the menu element
+    const originalItemDisplays = new Map<HTMLElement, string>();
+    const originalItemWhiteSpaces = new Map<HTMLElement, string>();
+    
+    // Move all items temporarily back to the menu element and style them as inline-block
     this.originalItems.forEach(item => {
-      const originalDisplay = item.style.display;
-      item.style.display = 'inline-block'; // force layout measurement shape if flex-wrap/display block is active
-      this.menuElement.insertBefore(item, this.moreItem);
+      originalItemDisplays.set(item, item.style.display);
+      originalItemWhiteSpaces.set(item, item.style.whiteSpace);
       
+      item.style.display = 'inline-block';
+      item.style.whiteSpace = 'nowrap';
+      
+      this.menuElement.insertBefore(item, this.moreItem);
+    });
+
+    // Measure widths in one batch of reads (prevents thrashing)
+    this.originalItems.forEach(item => {
       const width = this.getOuterWidth(item);
       this.itemWidths.set(item, width);
-      
-      item.style.display = originalDisplay;
     });
 
     // Measure the "More" item itself
-    this.moreItem.style.display = '';
+    this.moreItem.style.display = 'inline-block';
     this.moreItem.style.visibility = 'hidden';
     this.moreWidth = this.getOuterWidth(this.moreItem);
     
-    // Restore "More" item display styles
+    // Restore all original styles
+    this.menuElement.style.display = originalContainerDisplay;
     this.moreItem.style.display = originalMoreDisplay;
     this.moreItem.style.visibility = originalMoreVisibility;
+    
+    this.originalItems.forEach(item => {
+      item.style.display = originalItemDisplays.get(item) || '';
+      item.style.whiteSpace = originalItemWhiteSpaces.get(item) || '';
+    });
   }
 
   /**
@@ -205,6 +228,23 @@ export class FlexMenu {
    */
   public refresh(): void {
     const containerWidth = this.menuElement.getBoundingClientRect().width;
+    if (containerWidth === 0) return; // Menu is currently hidden
+
+    // If widths were measured as 0 (e.g. initialized while hidden), re-measure now
+    let needsRecompute = this.moreWidth === 0;
+    if (!needsRecompute) {
+      let sum = 0;
+      this.originalItems.forEach(item => {
+        sum += this.itemWidths.get(item) || 0;
+      });
+      if (sum === 0 && this.originalItems.length > 0) {
+        needsRecompute = true;
+      }
+    }
+    
+    if (needsRecompute) {
+      this.measureWidths();
+    }
     
     const style = window.getComputedStyle(this.menuElement);
     const paddingLeft = parseFloat(style.paddingLeft) || 0;
@@ -216,6 +256,9 @@ export class FlexMenu {
     this.originalItems.forEach(item => {
       totalItemsWidth += this.itemWidths.get(item) || 0;
     });
+
+    const isMoreAbsolute = window.getComputedStyle(this.moreItem).position === 'absolute';
+    const moreWidthNeeded = isMoreAbsolute ? 0 : this.moreWidth;
 
     if (totalItemsWidth <= availableWidth) {
       // Everything fits! No dropdown needed.
@@ -234,7 +277,7 @@ export class FlexMenu {
       this.moreItem.style.display = '';
       this.moreItem.removeAttribute('aria-hidden');
       
-      const widthLimit = availableWidth - this.moreWidth;
+      const widthLimit = availableWidth - moreWidthNeeded;
       let accumulatedWidth = 0;
       
       this.originalItems.forEach((item) => {
