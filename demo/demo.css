@@ -133,7 +133,6 @@ body {
   background: #111827;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  overflow: hidden;
   margin-bottom: 40px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
@@ -144,6 +143,8 @@ body {
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
 }
 
 .window-dot {
@@ -166,16 +167,15 @@ body {
 
 /* The Resizable Container */
 .resizable-wrapper {
-  min-height: 300px;
-  padding: 24px 24px 200px 24px; /* Generous bottom padding to allow absolute dropdown to render without clipping */
+  padding: 24px;
   background: #182235;
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  resize: horizontal;
-  overflow: hidden; /* Needed for resize handle to work */
   border-right: 2px dashed rgba(255,255,255,0.15);
   box-sizing: border-box;
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
 }
 
 /* 4. Controls Dashboard Grid */
